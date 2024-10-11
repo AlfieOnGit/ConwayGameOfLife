@@ -8,6 +8,11 @@ public:
     // Parameter "max_height" is the max height of both stacks INDIVIDUALLY, not combined.
     FlipStack(int max_height);
     ~FlipStack();
+    // Appends an item to the current stack. Is safe but does NOT indicate failure (use append() if unsure).
+    FlipStack &operator<<(T const &item);
+    // Pops an item from the current stack and sets it to the variable. Variable will become T or NULL if no items left
+    // in the current stack.
+    FlipStack &operator>>(T &var);
     // Flips the focus between the left and right stacks.
     void flip();
     // Takes argument and inserts it onto the top of the current stack. Returns TRUE if successful, FALSE if the stack
@@ -15,7 +20,9 @@ public:
     bool append(T item);
     // Removes and returns the top item from the current stack. Returns item or NULLPTR if the stack is empty.
     T pop();
-    void clear_current_stack();
+    // Clears the current stack of all items.
+    void clear();
+    // Gets the height of the current stack.
     int get_height() const;
 private:
     int max_height, *current_height, left_height { 0 }, right_height { 0 };
@@ -23,7 +30,7 @@ private:
 };
 
 template <typename T>
-FlipStack<T>::FlipStack(int max_height)
+FlipStack<T>::FlipStack(int const max_height)
 {
     this->max_height = max_height;
     left_stack = new T[max_height];
@@ -37,6 +44,20 @@ FlipStack<T>::~FlipStack()
 {
     delete[] left_stack;
     delete[] right_stack;
+}
+
+template <typename T>
+FlipStack<T> &FlipStack<T>::operator<<(T const &item)
+{
+    this->append(item);
+    return *this;
+}
+
+template <typename T>
+FlipStack<T>& FlipStack<T>::operator>>(T& var)
+{
+    var = this->pop();
+    return *this;
 }
 
 template <typename T>
@@ -65,11 +86,11 @@ T FlipStack<T>::pop()
 }
 
 template <typename T>
-void FlipStack<T>::clear_current_stack()
+void FlipStack<T>::clear()
 {
     for (int i = 0; i < *current_height; i++)
     {
-        (*current_stack)[i] = nullptr;
+        (*current_stack)[i] = NULL;
     }
     *current_height = 0;
 }
