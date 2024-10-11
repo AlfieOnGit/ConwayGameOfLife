@@ -1,8 +1,14 @@
 ﻿#pragma once
-#include "FlipList/FlipList.h"
+#include "FlipStack/FlipStack.h"
 
 class Grid
 {
+protected:
+    struct Coordinate
+    {
+        int x;
+        int y;
+    };
 public:
     Grid(int length, int height);
     ~Grid();
@@ -15,7 +21,8 @@ public:
 private:
     int length, height;
     bool **arr; // 2D boolean array: The actual grid behind the object (usage: use "arr[x][y]" to retrieve bool value)
-    FlipList *flip_list;
-    bool needs_flip(int x, int y) const;
+    FlipStack<Coordinate> *flip_stack; // FlipStack holding int[2] arrays, index 0 being the X and 1 being the Y of cells that
+    // need flipping
+    bool needs_flip(Coordinate coord) const;
     void new_row() const;
 };

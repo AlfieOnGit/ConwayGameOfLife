@@ -79,9 +79,9 @@ bool FlipStack<T>::append(T item)
 template <typename T>
 T FlipStack<T>::pop()
 {
-    if (*current_height == 0) return NULL;
+    if (*current_height == 0) return T();
     T hold = (*current_stack)[*current_height - 1];
-    (*current_stack)[(*current_height)--] = NULL;
+    (*current_stack)[(*current_height)--] = T();
     return hold;
 }
 
@@ -90,7 +90,7 @@ void FlipStack<T>::clear()
 {
     for (int i = 0; i < *current_height; i++)
     {
-        (*current_stack)[i] = NULL;
+        (*current_stack)[i] = T();
     }
     *current_height = 0;
 }
