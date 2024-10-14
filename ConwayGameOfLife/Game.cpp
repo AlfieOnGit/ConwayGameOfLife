@@ -1,7 +1,7 @@
 #include <iostream>
 #include <ostream>
 
-#include "ConwayGrid.h"
+#include "Grid/ConwayGrid.h"
 
 void first()
 {

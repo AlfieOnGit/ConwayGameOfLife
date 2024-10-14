@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Grid.h"
-#include "FlipStack/FlipStack.h"
+#include "../FlipStack/FlipStack.h"
 
 class ConwayGrid : public Grid<bool>
 {

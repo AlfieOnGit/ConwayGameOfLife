@@ -1,4 +1,5 @@
 ﻿#include "ConwayGrid.h"
+#include "../FlipStack/FlipStack.h"
 
 #include <iostream>
 
