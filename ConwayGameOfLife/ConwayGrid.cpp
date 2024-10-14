@@ -12,8 +12,8 @@ void ConwayGrid::print() const
     std::cout << "========GRID========\n";
     for (int x = 0; x < get_length() + 1; x++) std::cout << ". "; // Top layer of full stops
     std::cout << "\n";
-    for (int y = get_height() - 1; y >= 0; y--) // This reverses down since the top line (the first one we handle) should be
-        // the max Y index
+    // This reverses down since the top line (the first one we handle) should be the max Y index
+    for (int y = get_height() - 1; y >= 0; y--)
     {
         for (int x = 0; x < get_length(); x++)
         {
