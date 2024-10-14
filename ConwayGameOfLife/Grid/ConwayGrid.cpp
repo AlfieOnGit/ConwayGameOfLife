@@ -8,7 +8,7 @@ ConwayGrid::ConwayGrid(int const length, int const height): Grid(length, height,
     this->flip_stack = new FlipStack<Coordinate>(std::min(length, height));
 }
 
-void ConwayGrid::print() const
+void ConwayGrid::print()
 {
     std::cout << "========GRID========\n";
     for (int x = 0; x < get_length() + 1; x++) std::cout << ". "; // Top layer of full stops

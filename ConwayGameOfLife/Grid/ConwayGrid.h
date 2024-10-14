@@ -12,7 +12,7 @@ protected:
     };
 public:
     ConwayGrid(int length, int height);
-    void print() const;
+    void print();
     // Places COUNT number of cells randomly about the grid.
     void populate(int count) const;
     void flip(int x, int y) const;

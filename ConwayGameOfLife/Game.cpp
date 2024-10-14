@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ostream>
 
+#include "GameClock/GameClock.h"
 #include "Grid/ConwayGrid.h"
 
 void first()
@@ -16,17 +17,18 @@ void first()
     std::cin >> steps;
     std::cout << "Length: " << length << ", height: " << height << ", starting_live: " << starting_live << ", steps: " << steps << '\n';
     
-    auto const *grid = new ConwayGrid(length, height);
+    auto *grid = new ConwayGrid(length, height);
     grid->print();
 }
 
 void two()
 {
-    auto const *grid = new ConwayGrid(10, 10);
-    grid->populate(5);
-    grid->print();
-    grid->clear();
-    grid->print();
+    auto *grid = new ConwayGrid(10, 10);
+    auto *clock = new GameClock<ConwayGrid>(&ConwayGrid::print, grid);
+    std::cout << "Test 1!\n";
+    clock->start();
+    std::cout << "Test 2!\n";
+    clock->join();
 }
 
 int main()
