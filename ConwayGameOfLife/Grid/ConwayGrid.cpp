@@ -84,3 +84,10 @@ void ConwayGrid::new_row() const
         this->flip(hold.x, hold.y);
     }
 }
+
+void ConwayGrid::tick_and_print()
+{
+    tick();
+    print();
+}
+

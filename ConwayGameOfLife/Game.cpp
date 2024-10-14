@@ -18,22 +18,27 @@ void first()
     std::cout << "Length: " << length << ", height: " << height << ", starting_live: " << starting_live << ", steps: " << steps << '\n';
     
     auto *grid = new ConwayGrid(length, height);
+    grid->populate(starting_live);
+    auto *clock = new GameClock<ConwayGrid>(&ConwayGrid::tick_and_print, grid);
+    clock->set_loops(steps);
     grid->print();
+    clock->start();
+    clock->join();
 }
 
 void two()
 {
     auto *grid = new ConwayGrid(10, 10);
-    auto *clock = new GameClock<ConwayGrid>(&ConwayGrid::print, grid);
-    std::cout << "Test 1!\n";
+    grid->populate(10);
+    grid->print();
+    auto *clock = new GameClock<ConwayGrid>(&ConwayGrid::tick_and_print, grid);
     clock->start();
-    std::cout << "Test 2!\n";
     clock->join();
 }
 
 int main()
 {
-    //first();
-    two();
+    first();
+    //two();
     return 0;
 }

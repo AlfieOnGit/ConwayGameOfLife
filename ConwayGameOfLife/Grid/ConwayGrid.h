@@ -17,6 +17,7 @@ public:
     void populate(int count) const;
     void flip(int x, int y) const;
     void tick() const;
+    void tick_and_print();
 private:
     FlipStack<Coordinate> *flip_stack; // Holds coordinates that need flipping (killing or reviving)
     bool needs_flip(Coordinate coord) const;
