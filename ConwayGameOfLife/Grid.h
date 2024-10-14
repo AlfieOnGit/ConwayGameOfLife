@@ -6,28 +6,36 @@ template <typename T> class Grid
 {
 public:
     Grid(int length, int height);
+    Grid(int length, int height, T default_value);
     ~Grid();
     // Checks if coordinates are within the bounds of the grid.
     bool is_valid(int x, int y) const;
     T get(int x, int y) const;
     void set(int x, int y, T val) const;
+    void clear() const;
     int get_length() const;
     int get_height() const;
+protected:
+    T DEFAULT_VALUE = false;
 private:
     int length, height;
     T **arr; // 2D boolean array: The actual grid behind the object (usage: use "arr[x][y]" to retrieve bool value).
 };
 
 template <typename T>
-Grid<T>::Grid(int const length, int const height)
+Grid<T>::Grid(int const length, int const height): Grid(length, height, T(0)) { }
+
+template <typename T>
+Grid<T>::Grid(int const length, int const height, T const default_value)
 {
+    this->DEFAULT_VALUE = default_value;
     this->length = length;
     this->height = height;
 
     this->arr = new bool*[length];
     for (int i = 0; i < length; i++)
     {
-        this->arr[i] = new bool[height] { false };
+        this->arr[i] = new bool[height] { DEFAULT_VALUE };
     }
 }
 
@@ -68,6 +76,15 @@ void Grid<T>::set(int const x, int const y, T const val) const
     }
 
     arr[x][y] = val;
+}
+
+template <typename T>
+void Grid<T>::clear() const
+{
+    for (int x = 0; x < length; x++) for (int y = 0; y < height; y++)
+    {
+        arr[x][y] = DEFAULT_VALUE;
+    }
 }
 
 template <typename T>

@@ -2,11 +2,10 @@
 
 #include <iostream>
 
-ConwayGrid::ConwayGrid(int const length, int const height): Grid(length, height)
+ConwayGrid::ConwayGrid(int const length, int const height): Grid(length, height, false)
 {
     this->flip_stack = new FlipStack<Coordinate>(std::min(length, height));
 }
-
 
 void ConwayGrid::print() const
 {
@@ -23,6 +22,18 @@ void ConwayGrid::print() const
         std::cout << ".\n";
     }
     std::cout << "====================\n";
+}
+
+void ConwayGrid::populate(int const count) const
+{
+    srand(time(nullptr));
+    for (int i = 0; i < count; i++)
+    {
+        int const x = rand() % get_length();
+        int const y = rand() % get_height();
+        if (!get(x, y)) set(x, y, true); // If not already alive, make alive
+        else i--; // If already alive, turn a different cell alive instead
+    }
 }
 
 void ConwayGrid::flip(int const x, int const y) const
@@ -50,10 +61,10 @@ bool ConwayGrid::needs_flip(Coordinate const coord) const
     for (int i = coord.x - 1; i <= coord.x + 1; i++) for (int j = coord.y - 1; j <= coord.y + 1; j++)
     {
         if (!is_valid(i, j) || (i == coord.x && j == coord.y)) continue;
-        if (get(i, j) == true) neighbours_alive++;
+        if (get(i, j)) neighbours_alive++;
     }
 
-    if (get(coord.x, coord.y) == true) // If target cell is alive
+    if (get(coord.x, coord.y)) // If target cell is alive
     {
         return neighbours_alive < 2 || neighbours_alive > 3;
     }

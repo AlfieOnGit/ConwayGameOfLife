@@ -3,7 +3,7 @@
 
 #include "ConwayGrid.h"
 
-int main()
+void first()
 {
     int length, height, starting_live, steps;
     std::cout << "Enter the length of the grid: ";
@@ -18,5 +18,20 @@ int main()
     
     auto const *grid = new ConwayGrid(length, height);
     grid->print();
+}
+
+void two()
+{
+    auto const *grid = new ConwayGrid(10, 10);
+    grid->populate(5);
+    grid->print();
+    grid->clear();
+    grid->print();
+}
+
+int main()
+{
+    //first();
+    two();
     return 0;
 }
