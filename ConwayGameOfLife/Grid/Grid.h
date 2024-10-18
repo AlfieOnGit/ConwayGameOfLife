@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
 
 template <typename T> class Grid
 {
@@ -14,6 +15,7 @@ public:
     void set(int x, int y, T val) const;
     void clear();
     void copy_values(Grid const *grid);
+    void save(std::ofstream &file);
     int get_length() const;
     int get_height() const;
 protected:
@@ -96,6 +98,19 @@ void Grid<T>::copy_values(Grid const *grid)
     for (int x = 0; x < min_length; x++) for (int y = 0; y < min_height; y++)
     {
         arr[x][y] = grid->get(x, y);
+    }
+}
+
+template <typename T>
+void Grid<T>::save(std::ofstream &file)
+{
+    for (int x = 0; x < length; x++)
+    {
+        for (int y = 0; y < height; y++)
+        {
+            file << arr[x][y] << ' ';
+        }
+        file << '\n';
     }
 }
 
