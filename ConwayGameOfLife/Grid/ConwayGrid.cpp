@@ -5,7 +5,7 @@
 
 ConwayGrid::ConwayGrid(int const length, int const height): Grid(length, height, false)
 {
-    this->flip_stack = new FlipStack<Coordinate>(std::max(length, height));
+    this->flip_stack = new FlipStack<Coordinate>(height);
 }
 
 void ConwayGrid::print()
@@ -50,9 +50,9 @@ void ConwayGrid::tick()
             Coordinate hold{x, y};
             if (needs_flip(hold)) *this->flip_stack << hold;
         }
-        this->new_row();
+        this->new_column();
     }
-    this->new_row(); // TODO: Figure out if I need this
+    this->new_column(); // TODO: Figure out if I need this
 }
 
 bool ConwayGrid::needs_flip(Coordinate const coord) const
@@ -73,7 +73,7 @@ bool ConwayGrid::needs_flip(Coordinate const coord) const
     return neighbours_alive == 3;
 }
 
-void ConwayGrid::new_row()
+void ConwayGrid::new_column()
 {
     this->flip_stack->flip();
     Coordinate hold;
