@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 // FlipStack holds two stacks and allows the user to flip() between the two. The idea is to save the user from having
 // to keep checking which of the two stacks they should be handling at a given time.
