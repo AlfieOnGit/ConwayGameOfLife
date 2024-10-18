@@ -1,16 +1,16 @@
-﻿#include "ConwayGrid.h"
+#include "ConwayGrid.h"
 #include "../FlipStack/FlipStack.h"
 
 #include <iostream>
 
 ConwayGrid::ConwayGrid(int const length, int const height): Grid(length, height, false)
 {
-    this->flip_stack = new FlipStack<Coordinate>(std::min(length, height));
+    this->flip_stack = new FlipStack<Coordinate>(std::max(length, height));
 }
 
 void ConwayGrid::print()
 {
-    std::cout << "========GRID========\n";
+    system("cls"); // TODO: Add back
     for (int x = 0; x < get_length() + 1; x++) std::cout << ". "; // Top layer of full stops
     std::cout << "\n";
     // This reverses down since the top line (the first one we handle) should be the max Y index
@@ -22,7 +22,6 @@ void ConwayGrid::print()
         }
         std::cout << ".\n";
     }
-    std::cout << "====================\n";
 }
 
 void ConwayGrid::populate(int const count) const
@@ -37,12 +36,12 @@ void ConwayGrid::populate(int const count) const
     }
 }
 
-void ConwayGrid::flip(int const x, int const y) const
+void ConwayGrid::flip(int const x, int const y)
 {
     set(x, y, !get(x, y));
 }
 
-void ConwayGrid::tick() const
+void ConwayGrid::tick()
 {
     for (int x = 0; x < get_length(); x++)
     {
@@ -74,14 +73,14 @@ bool ConwayGrid::needs_flip(Coordinate const coord) const
     return neighbours_alive == 3;
 }
 
-void ConwayGrid::new_row() const
+void ConwayGrid::new_row()
 {
     this->flip_stack->flip();
     Coordinate hold;
     while (this->flip_stack->get_height() > 0)
     {
         *flip_stack >> hold;
-        this->flip(hold.x, hold.y);
+        flip(hold.x, hold.y);
     }
 }
 
@@ -90,4 +89,3 @@ void ConwayGrid::tick_and_print()
     tick();
     print();
 }
-
