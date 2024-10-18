@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <thread>
 
 template <typename T> class GameClock
@@ -52,4 +52,3 @@ void GameClock<T>::set_loops(int loops)
 {
     this->loops = loops;
 }
-
