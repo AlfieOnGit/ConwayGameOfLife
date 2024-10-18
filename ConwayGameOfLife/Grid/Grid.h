@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <iostream>
 
@@ -12,14 +12,15 @@ public:
     bool is_valid(int x, int y) const;
     T get(int x, int y) const;
     void set(int x, int y, T val) const;
-    void clear() const;
+    void clear();
+    void copy_values(Grid const *grid);
     int get_length() const;
     int get_height() const;
 protected:
     T DEFAULT_VALUE = false;
 private:
     int length, height;
-    T **arr; // 2D boolean array: The actual grid behind the object (usage: use "arr[x][y]" to retrieve bool value).
+    T **arr; // 2D T array: The actual grid behind the object (usage: use "arr[x][y]" to retrieve T value).
 };
 
 template <typename T>
@@ -79,11 +80,22 @@ void Grid<T>::set(int const x, int const y, T const val) const
 }
 
 template <typename T>
-void Grid<T>::clear() const
+void Grid<T>::clear()
 {
     for (int x = 0; x < length; x++) for (int y = 0; y < height; y++)
     {
         arr[x][y] = DEFAULT_VALUE;
+    }
+}
+
+template <typename T>
+void Grid<T>::copy_values(Grid const *grid)
+{
+    int const min_length = std::min(this->get_length(), grid->get_length());
+    int const min_height = std::min(this->get_height(), grid->get_height());
+    for (int x = 0; x < min_length; x++) for (int y = 0; y < min_height; y++)
+    {
+        arr[x][y] = grid->get(x, y);
     }
 }
 
