@@ -54,7 +54,7 @@ FlipStack<T> &FlipStack<T>::operator<<(T const &item)
 }
 
 template <typename T>
-FlipStack<T>& FlipStack<T>::operator>>(T& var)
+FlipStack<T> &FlipStack<T>::operator>>(T& var)
 {
     var = this->pop();
     return *this;
