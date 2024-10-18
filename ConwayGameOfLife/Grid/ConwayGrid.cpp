@@ -10,7 +10,7 @@ ConwayGrid::ConwayGrid(int const length, int const height): Grid(length, height,
 
 void ConwayGrid::print()
 {
-    system("cls"); // TODO: Add back
+    system("cls");
     for (int x = 0; x < get_length() + 1; x++) std::cout << ". "; // Top layer of full stops
     std::cout << "\n";
     // This reverses down since the top line (the first one we handle) should be the max Y index
@@ -52,7 +52,7 @@ void ConwayGrid::tick()
         }
         this->new_column();
     }
-    this->new_column(); // TODO: Figure out if I need this
+    this->new_column();
 }
 
 bool ConwayGrid::needs_flip(Coordinate const coord) const

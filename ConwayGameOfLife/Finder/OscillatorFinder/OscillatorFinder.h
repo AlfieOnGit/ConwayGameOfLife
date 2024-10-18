@@ -12,7 +12,7 @@ public:
     int check();
 private:
     //Grid<bool> *horizontal_blinker, *vertical_blinker; // Template for the respective shapes
-    Grid<bool> *shapes[10]; // TODO: Change to 10
+    Grid<bool> *shapes[10];
     FlipStack<Coordinate> *shapes_found;
     // Finds blinkers and toads in the test grid and puts them in this->shapes
     void find_shapes();

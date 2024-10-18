@@ -12,7 +12,7 @@ private:
     T* obj;
     void(T::*member_func)();
     std::thread thread;
-    int loops = 5; // TODO: Set to 0
+    int loops = 5;
     int DELAY = 1; // How many seconds between executions
     void run() const;
 };

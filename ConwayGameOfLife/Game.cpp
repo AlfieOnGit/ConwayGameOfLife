@@ -25,15 +25,6 @@ void first()
     grid->print();
     clock->start();
     clock->join();
-    char save;
-    std::cout << "Save grid? (y/n) ";
-    std::cin >> save;
-    if (save == 'Y' || save == 'y')
-    {
-        std::ofstream file("grid.txt");
-        grid->save(file);
-        file.close();
-    }
 }
 
 void second()
@@ -100,18 +91,6 @@ void third()
     std::cout << "Grid tick: " << tick_num << '\n';
 }
 
-void sixth()
-{
-    char inp = ' ';
-    std::ifstream file("grid.txt");
-    while (inp != '\0') // TODO: Make work
-    {
-        file >> inp;
-        std::cout << inp << "_";
-    }
-    file.close();
-}
-
 int main()
 {
     int question;
@@ -127,9 +106,6 @@ int main()
         break;
     case 3:
         third();
-        break;
-    case 6:
-        sixth();
         break;
     default:
         main();

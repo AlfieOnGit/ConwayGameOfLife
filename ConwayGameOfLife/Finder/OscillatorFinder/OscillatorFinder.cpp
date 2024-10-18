@@ -3,7 +3,7 @@
 OscillatorFinder::OscillatorFinder(ConwayGrid* grid): Finder(grid)
 {
     make_shapes();
-    shapes_found = new FlipStack<Coordinate>(std::max(grid->get_length(), grid->get_height())); // TODO: Maybe make this shorter?
+    shapes_found = new FlipStack<Coordinate>(std::max(grid->get_length(), grid->get_height()));
 }
 
 OscillatorFinder::~OscillatorFinder()
@@ -30,7 +30,7 @@ int OscillatorFinder::check()
 
 void OscillatorFinder::find_shapes()
 {
-    for (int x = 0; x < test_grid->get_length(); x++) for (int y = 0; y < test_grid->get_height(); y++) // TODO: Maybe - beehive length and height?
+    for (int x = 0; x < test_grid->get_length(); x++) for (int y = 0; y < test_grid->get_height(); y++)
     {
         if (check_all_shapes(x, y)) *shapes_found << Coordinate {x, y};
     }
